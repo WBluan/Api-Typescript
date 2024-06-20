@@ -1,14 +1,13 @@
-import 'reflect-metadata';
-import express from 'express';
-import {router} from './routes'
-import  createConnection  from './database';
+import express, {Request, Response} from 'express';
 
-createConnection();
 const server = express();
 const port = 5000;
 
-server.use(express.json());
-server.use(router);
+server.get("/", (request:Request, response:Response) => {
+    return response.json({mensagem: "Bem-vindo a API"});
+})
+
+
 server.listen(port, () => {
     console.log(`Servidor on na porta ${port}. http://localhost:${port}/`)
 })
